@@ -1,6 +1,6 @@
 {
   "name": "browser-resource",
-  "version": "0.0.1",
+  "version": "0.1.rc-1",
   "description": "REST client for browsers",
   "main": "index.js",
   "scripts": {
