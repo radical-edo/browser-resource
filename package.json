@@ -1,0 +1,36 @@
+{
+  "name": "browser-resource",
+  "version": "0.0.0",
+  "description": "REST client for browsers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/radical-edo/browser-resource.git"
+  },
+  "keywords": [
+    "rest",
+    "client",
+    "browser",
+    "js",
+    "api"
+  ],
+  "author": {
+    "fullname": "Mateusz (Max) Barczak",
+    "alias": "radical-edo",
+    "email": "radical.3do@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/radical-edo/browser-resource/issues"
+  },
+  "homepage": "https://github.com/radical-edo/browser-resource#readme",
+  "dependencies": {
+    "superagent": "^2.0.0"
+  },
+  "peerDependencies": {
+    "bluebird": "^3.4.1"
+  }
+}
