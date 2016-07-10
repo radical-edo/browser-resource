@@ -1,3 +1,3 @@
 # browser-resource
 
-A simple library for integrating wtih RESTful API's
+A simple library for integrating with RESTful API's
