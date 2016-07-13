@@ -1,20 +1,56 @@
 # browser-resource
 A simple library for integrating with RESTful API's. It will seemlesly integrate with any RESTful API, as long as it follows the rules of such.
 
-# Installation
+### Installation
 
 ```
 npm install --save browser-resource
 ```
 Then `require` the `Resrouce` into your project, like so:
 
-```
+```js
 const Resource = require('browser-resource').Resource
 ```
 or by using ES6 destructurizing syntax
 
-```
+```js
 const { Resource } = require('browser-resource');
+```
+
+Or if you can use ES6 imports
+
+```js
+import { Resource } from 'browser-resource';
+// all bellow examples will not be using this sytanx, but you can, if you want.
+```
+
+### Configuration
+Currently `browser-resource` supports only two global config options, in order to achive them, get the `Config` function, like so:
+
+```js
+const { Config } = require('browser-resource');
+Config(function (config) {
+    // config is the object that you need to modify to setup the entire library
+    // available options are listed below
+});
+```
+
+**namespace**
+* string that will be prepended to every url before an request has been made
+
+For example:
+```js
+config.namespace = '/api/v1';
+```
+
+**headers**
+* **headers has to be an array of arrays**
+* those headers will be added to every request you send
+
+For example:
+
+```js
+config.headers = [['Authorization', 'Bearer super-secret-token']];
 ```
 
 ### API
@@ -54,3 +90,19 @@ resource.action('email', { message: 'Hi' }).then(function (res) {
 });
 ```
 
+### Error Handling
+The returned `Promise` from any of the request methods is a **Bluebird** Promise. Meaning you can provide which errors you want to catch as a first argument of the `catch` function. I highly recommend doing so. If you will catch every error in this `catch` callback you will really have a hard time developing your application. `browser-resource` thankfuly exposes the Error klass which you can use to provide as the first agrugment
+
+```js
+const { ErrorResponse, Resource } = require('browser-resource');
+
+const resource = new Resource('/users');
+resource.list().then(function (res) {
+  // do what you need to do when a successful response has been received
+}).catch(ErrorResponse, fuction (err) {
+   // do the error handling
+   // the error response is under err.err
+});
+```
+
+One thing about the `err` object - it will keep the `err` response under the `err` property of the thrown error, for example: `err.err`.
