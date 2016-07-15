@@ -78,6 +78,7 @@ Please note, that below methods return a **Bluebird** promise, for you to easily
 * `params.id` needs to be provided in order to make sure which resource should be deleted. `id` won't be added to the request `body`
 
 **action(name: String, params: Object, method = 'post')**
+
 Somtimes an custom *action* is defined on a resource. This will send any type of request and any action on any resource.
 For example:
 *Resource* url is `/users` and we want to send an `POST` request to `email` action on the server that sends email to all the users in the system. To do this we simply write:
@@ -89,6 +90,14 @@ resource.action('email', { message: 'Hi' }).then(function (res) {
   console.error(err);
 });
 ```
+
+**upload(name: String, file: Object, params: Object)**
+
+* This is used for file upload, `name` will be appedned to the `resource` and create the final endpoint.
+* `file` should be an object that has `file` key and under it a `File` - this file will be uploaded.
+* `params` is an Object that will be added to the body of the request. Basically providing additonal parameters, if required.
+
+This is an `multipart` request, so the `body` will not be a `JSON`. It will be **form** params/payload
 
 ### Error Handling
 The returned `Promise` from any of the request methods is a **Bluebird** Promise. Meaning you can provide which errors you want to catch as a first argument of the `catch` function. I highly recommend doing so. If you will catch every error in this `catch` callback you will really have a hard time developing your application. `browser-resource` thankfuly exposes the Error klass which you can use to provide as the first agrugment
