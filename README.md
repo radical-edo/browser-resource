@@ -97,7 +97,13 @@ resource.action('email', { message: 'Hi' }).then(function (res) {
 * `file` should be an object that has `file` key and under it a `File` - this file will be uploaded.
 * `params` is an Object that will be added to the body of the request. Basically providing additonal parameters, if required.
 
-This is an `multipart` request, so the `body` will not be a `JSON`. It will be **form** params/payload
+This is an `multipart` request, so the `body` will not be a `JSON`. It will be **form** params/payload, for example:
+
+```js
+const file = new File(); // this won't work since the File needs to args, its merley to show that a file is sent
+const resource = new Resource('/users');
+resource.upload('avatar', { file }, { filename: 'avatar.png' });
+```
 
 ### Error Handling
 The returned `Promise` from any of the request methods is a **Bluebird** Promise. Meaning you can provide which errors you want to catch as a first argument of the `catch` function. I highly recommend doing so. If you will catch every error in this `catch` callback you will really have a hard time developing your application. `browser-resource` thankfuly exposes the Error klass which you can use to provide as the first agrugment
