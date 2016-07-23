@@ -2,7 +2,7 @@
   "name": "browser-resource",
   "version": "0.4.0",
   "description": "REST client for browsers",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "babel index.js lib --presets babel-preset-es2015 --plugin babel-plugin-transform-builtin-extend --out-dir dist", 
     "test": "echo \"Error: no test specified\" && exit 1"
