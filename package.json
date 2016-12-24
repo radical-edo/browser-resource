@@ -1,12 +1,14 @@
 {
   "name": "browser-resource",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "REST client for browsers",
   "main": "dist/index.js",
   "scripts": {
+    "prepublis": "npm run build",
     "build": "babel index.js --presets babel-preset-es2015 --out-dir dist && babel lib --presets babel-preset-es2015 --plugin babel-plugin-transform-builtin-extend --out-dir dist/lib", 
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": ["dist"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/radical-edo/browser-resource.git"

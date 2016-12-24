@@ -24,7 +24,7 @@ var Http = function () {
   }, {
     key: 'method',
     value: function method(type) {
-      var req = request[type](this.path).type('json').accept('json');
+      var req = request[type](config.namespace + this.path).type('json').accept('json');
       config.headers.forEach(function (header) {
         req.set.apply(req, _toConsumableArray(header));
       });

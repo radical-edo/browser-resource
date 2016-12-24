@@ -10,21 +10,20 @@ var Http = require('./http');
 var config = require('./config');
 var ErrorResponse = require('./errors/error_response');
 
-var _require = require('./helpers');
-
-var omit = _require.omit;
+var _require = require('./helpers'),
+    omit = _require.omit;
 
 var Resource = function () {
   function Resource(path) {
     _classCallCheck(this, Resource);
 
-    this.http = new Http(config.namespace + path);
+    this.http = new Http(path);
   }
 
   _createClass(Resource, [{
     key: 'upload',
     value: function upload(path, file) {
-      var params = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+      var params = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
       var req = this.http.upload(path).attach(file.name, file.file);
       Object.keys(params).forEach(function (key) {
@@ -35,7 +34,7 @@ var Resource = function () {
   }, {
     key: 'action',
     value: function action(name, params) {
-      var method = arguments.length <= 2 || arguments[2] === undefined ? 'post' : arguments[2];
+      var method = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'post';
 
       var req = this.http.method(method);
       if ('get' === method) {
